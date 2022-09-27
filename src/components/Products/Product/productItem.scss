@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display&family=Noto+Serif&family=Oswald&family=Roboto:wght@300&display=swap');
+
+.product{
+   
+    &__card{
+        display: flex;
+        flex-direction: column;
+        margin-top: 5%;
+        
+       align-items: center;
+    
+       padding: 5%;
+       
+       
+      }
+    &__image{
+        width:40%;
+        height: 40%;
+        border-radius: 10%;
+        border: 2px solid black;
+    }
+    &__btn{
+        color:white;
+        border: none;
+        background-color: black;
+        padding: 5%;
+        width: auto;
+        margin-right: 30%;
+    }
+    &__btn:hover{
+        background-color: white;
+        color: black;
+    }
+    
+    &__name{
+        font: 1.5em "Noto Serif";
+        font-weight: 400;
+    }
+    &__price{
+        font-size: small;
+        margin-left: 25%;
+    }
+}

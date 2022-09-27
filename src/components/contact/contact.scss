@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif&family=Oswald&family=Roboto:wght@300&display=swap');
+.contact{
+    padding-top: 10%;
+    background-color:rgb(139, 145, 132);
+    a{
+        color:black;
+        font-size: .5em;
+        margin-top:0%;
+    }
+    &__footer{
+        display: flex;
+        flex-direction:row;
+        justify-content: space-evenly;
+        width:100%;
+        border-top: 2px solid black;
+        margin-left: 2%;
+        background-color: white;
+        
+    }
+    &__footer img{
+        width:10%;
+        margin-top: 5%;
+    }
+    &__title{
+        font-size:.8em;
+        margin-right:5% ;
+
+    }
+    &__title span{
+        font-size: .5em;
+    }
+    &__us{
+        margin-left: 5%;
+        list-style: none;
+    }
+    &__us li{
+        margin-left: 5%;
+        list-style: none;
+    }
+    &__services{
+        margin-left: 5%;
+    }
+    &__about{
+        margin-left: 5%;
+        
+    }
+    &__catalog{
+        margin-left: 5%;
+    }
+    
+   
+
+}

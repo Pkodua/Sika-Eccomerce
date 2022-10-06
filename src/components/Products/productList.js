@@ -1,12 +1,15 @@
-import React from 'react'
+import { React, useState, useEffect, }from 'react'
 import Grid from '@mui/material/Grid';
 import ProductItem from './Product/productItem';
 import PropTypes from 'prop-types';
 import '../Products/productList.scss';
 
 
-export default function productList({ product, onAddToCart }) {
+export default function ProductList({ product, onAddToCart }) {
+ 
+  
   return (
+   
     <main>
       <div className='product'>
         <div className='product__container'>
@@ -22,8 +25,8 @@ export default function productList({ product, onAddToCart }) {
         ))}
       </Grid>
     </main>
-  )
+   )
 }
-productList.propTypes = {
-  product: PropTypes.array,
-};
+// ProductList.propTypes = {
+//   product: PropTypes.array,
+// };

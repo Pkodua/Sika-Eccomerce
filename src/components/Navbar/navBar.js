@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './../Navbar/navBar.scss';
 import { Fade as Hamburger } from 'hamburger-react';
 import { BrowserRouter, Link } from 'react-router-dom';
@@ -7,10 +7,11 @@ import { BiShoppingBag } from "react-icons/bi"
 import about from '../../pages/About/about';
 import contact from '../contact/contact';
 import shop from '../../pages/Shop/shop';
-import Cart from '../Cart/Cart';
-export default function Navbar() {
 
-
+import { useLocation } from 'react-router-dom';
+export default function Navbar({cart}) {
+   
+   
     const [isOpen, setOpen] = useState(false)
 
     const closeMenu = () => {
@@ -22,23 +23,23 @@ export default function Navbar() {
 
                 <Hamburger size={25} color="#101010" direction="left" easing="ease-in" toggled={isOpen} toggle={setOpen} />
 
-                <a href='http://localhost:3002/' className='navBar__logo'> SIKA</a>
+                <Link to='/' className='navBar__logo'> SIKA</Link>
                 <ul className={`menuNav ${isOpen ? " showMenu" : ""}`}>
 
                     <li className='navBar__item' >
-                        <a href='http://localhost:3002/About' className='nav__link'>About</a>
+                        <Link to='/About' className='nav__link'>About</Link>
                     </li>
                     <li className='navBar__item' >
-                        <a href='http://localhost:3002/Shop' className='nav__link'>Shop</a>
+                        <Link to='/Shop' className='nav__link'>Shop</Link>
 
                     </li>
                     <li className='navBar__item' >
-                        <a href='http://localhost:3002/Contact' className='nav__link'>Contact</a>
+                        <Link to='/Contact' className='nav__link'>Contact</Link>
 
                     </li>
 
                 </ul>
-                <a href='http://localhost:3002/Cart'> <BiShoppingBag className='navBar__icon' size={26} color="#101010" ></BiShoppingBag></a>
+                <Link to='/Cart'> <BiShoppingBag className='navBar__icon' size={26} color="#101010" ></BiShoppingBag></Link>
 
         </nav>
 

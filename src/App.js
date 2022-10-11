@@ -4,7 +4,9 @@ import Shop from "./pages/Shop/shop";
 import About from "./pages/About/about";
 import Home from "./pages/Home/home";
 import Cart from './pages/Cart/cart'
-import {React,useEffect,useState} from 'react';
+import CheckoutPage from "./pages/checkoutPage/checkoutPage";
+import { React, useEffect, useState } from 'react';
+
 
 import './App.scss'
 import commerce from "./Lib/commerce";
@@ -12,7 +14,10 @@ import Navbar from "./components/Navbar/navBar";
 
 function App() {
   const [cart, setCart] = useState({});
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([])
+  const [order, setOrder] = useState({});
+  const [errorMessage, setErrorMessage] = useState('');
+
 
 
   const fetchProducts = () => {
@@ -50,48 +55,40 @@ function App() {
     });
   }
 
-  const emptyMessage = () => {
-    if (cart.total_unique_items > 0) {
-      return;
+
+  const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
+    try {
+      const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
+
+      setOrder(incomingOrder);
+
+      refreshCart();
+    } catch (error) {
+      setErrorMessage(error.data.error.message);
     }
 
-    return (
-      <p className="cart__none">
-        You have no items in your shopping cart, start adding some!
-      </p>
-    );
+
+
   }
-  // const renderItems = () => (
-  //     cart.line_items.map((lineItem) => (
-  //       <CartItem
-  //         item={lineItem}
-  //         key={lineItem.id}
-  //         className="cart__inner"
-  //       />
-  //     ))
-  //   );
+  const refreshCart = async () => {
+    const newCart = await commerce.cart.refresh();
 
-  const renderTotal = () => (
-    <div className="cart__total">
-      <p className="cart__total-title">Subtotal:</p>
-      <p className="cart__total-price">{cart.subtotal.formatted_with_symbol}</p>
-    </div>
-  );
-
+    setCart(newCart);
+  };
 
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar cart={cart}/>        
+        <Navbar cart={cart} />
         <div>
           <Routes>
-            <Route exact path="/" element={<Home/>}></Route>
-            <Route path="/About" element={<About/>} />
-            <Route path="/Shop" element={<Shop products={products}/>} />
+            <Route exact path="/" element={<Home />}></Route>
+            <Route path="/About" element={<About />} />
+            <Route path="/Shop" element={<Shop products={products} />} />
             <Route path="/Contact" element={<Contact />} />
-            <Route path="/Cart"  element={<Cart cart={cart}/>} >
-             
-            </Route>
+            <Route path="/Cart" element={<Cart cart={cart} />} />
+            <Route path="/Checkout" element={<CheckoutPage cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} />} />
+
 
 
 

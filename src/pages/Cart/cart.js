@@ -4,6 +4,7 @@ import CartItem from './CartItem/CartItem';
 import '../Cart/cart.scss'
 import Grid from '@mui/material/Grid';
 import productItem from '../../components/Products/Product/productItem';
+import { Link } from 'react-router-dom';
 export default function Cart( {cart}) {
  const products= cart.line_items
    console.log(products)
@@ -30,7 +31,7 @@ export default function Cart( {cart}) {
         ))}
          
       </Grid>
-      <button>Checkout</button>
+      <Link to='/Checkout'><button className='cart__checkout'>Checkout</button></Link>
     </section>
    
     </>
